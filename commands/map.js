@@ -16,8 +16,11 @@ module.exports = {
                 label:`${element.displayName}`,
                 //description:`${element}`,
                 id:`${element.uuid}`,
-                img_url:`${element.displayIcon}`,
-                value:`${element.uuid}`,
+                value:{
+                    command:'map',
+                    img_url:`${element.displayIcon}`,
+                    id:`${element.uuid}`,
+                },
             });
         });
 
