@@ -9,6 +9,7 @@ const cron = require('node-cron');
 const fs = require('node:fs');
 const path = require('node:path');
 
+//コマンドファイルの読み込み
 client.commands = new Collection();
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 for (const file of commandFiles) {
@@ -16,6 +17,7 @@ for (const file of commandFiles) {
     client.commands.set(command.data.name, command);
 }
 
+//イベントファイルの読み込み
 const eventFiles = fs.readdirSync('./events').filter(file => file.endsWith('.js'));
 
 for (const file of eventFiles) {
@@ -26,10 +28,11 @@ for (const file of eventFiles) {
         client.on(event.name, (...args) => event.execute(...args));
     }
 }
-
-cron.schedule('0 8 * * *', () => {
+//定期実行プログラム
+//現在未実装
+cron.schedule('0 9 * * *', () => {
     console.log('schedule happen!');
-    client.channels.cache.get(scheduleId).send('scedule happen!');
+    client.channels.cache.get(scheduleId).send('/map');
 });
 
 client.on('guildMemberAdd', member => {
